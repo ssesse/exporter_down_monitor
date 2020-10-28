@@ -36,6 +36,7 @@ def judge_type(job):
 
 
 def exporter_status_get(exporter_node_monitor):
+    exporter_node_monitor._metrics.clear()
     exporters_info = prometheus_info_get(prometheus_target_url)
     active_targets = exporters_info.get('data').get('activeTargets')
     for exporter_info in active_targets:
