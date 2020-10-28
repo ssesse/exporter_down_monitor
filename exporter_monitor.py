@@ -53,11 +53,11 @@ def exporter_status_get(exporter_node_monitor):
             exporter_status = 1
         else:
             exporter_status = -1
-        exporter_node_monitor.labels(target_exporter=target).set(exporter_status)
+        exporter_node_monitor.labels(target_exporter=target, job=job).set(exporter_status)
 
 
 def main():
-    exporter_node_monitor = Gauge('exporter_node', 'node available(1-up, 0-down)', ['target_exporter'])
+    exporter_node_monitor = Gauge('exporter_node', 'node available(1-up, 0-down)', ['target_exporter', 'job'])
     # otter_manager_gauge = Gauge('prometheus_target', 'node available(1-正常, 0-不正常)',
     #                             ['otter_manager_host', 'otter_manager_port'])
     start_http_server(10001)
